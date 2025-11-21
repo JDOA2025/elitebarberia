@@ -1,0 +1,45 @@
+<nav class="navbar">
+  <div class="container">
+
+    <!-- Logo + Nombre -->
+    <div class="logo">
+      <div class="circle">EB</div>
+      <span class="brand">Elite Barbería</span>
+    </div>
+
+    <!-- Desktop Menu -->
+    <ul class="menu">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#galeria">Galería</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+
+    <!-- Botón reservar -->
+    <a href="https://wa.me/50431420427?text=Hola%20quiero%20reservar%20una%20cita"
+       class="reserve-btn" target="_blank">
+      Reservar
+    </a>
+
+    <!-- Mobile -->
+    <div class="hamburger" (click)="toggleMenu()">
+      <div></div><div></div><div></div>
+    </div>
+
+  </div>
+
+  <!-- Mobile Dropdown -->
+  <ul class="mobile-menu" [class.open]="menuOpen">
+    <li><a href="#inicio" (click)="closeMenu()">Inicio</a></li>
+    <li><a href="#servicios" (click)="closeMenu()">Servicios</a></li>
+    <li><a href="#galeria" (click)="closeMenu()">Galería</a></li>
+    <li><a href="#blog" (click)="closeMenu()">Blog</a></li>
+    <li><a href="#contacto" (click)="closeMenu()">Contacto</a></li>
+    <li>
+      <a href="https://wa.me/50431420427" class="reserve-btn-mobile" target="_blank">
+        Reservar
+      </a>
+    </li>
+  </ul>
+</nav>
