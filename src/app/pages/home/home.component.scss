@@ -140,29 +140,40 @@ img {
   }
 }
 
-/* =========================================================
-   HERO (Swiper)
-   ========================================================= */
+
+/* ==========================
+   SWIPER HERO
+========================== */
 
 .hero {
-  height: 100vh;
-  padding-top: 100px;
   position: relative;
+  height: 100vh;
   overflow: hidden;
-
-  .hero-swiper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-
-    .swiper-slide {
-      background-size: cover;
-      background-position: center;
-    }
-  }
 }
+
+.hero-swiper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-slide {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.swiper-pagination-bullet {
+  background: #ffb300 !important;
+  opacity: 0.8;
+}
+
+.swiper-pagination-bullet-active {
+  background: #fff !important;
+}
+
 
 /* Overlay Premium */
 .hero::before {

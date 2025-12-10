@@ -1,8 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
-import Swiper from 'swiper';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-
-Swiper.use([Navigation, Pagination, Autoplay]);
+import Swiper from 'swiper/bundle';
+import 'swiper/css/bundle';
 
 @Component({
   selector: 'app-home',
@@ -18,13 +16,16 @@ export class HomeComponent implements AfterViewInit {
     new Swiper('.hero-swiper', {
       loop: true,
       autoplay: {
-        delay: 3500,
+        delay: 2600,
         disableOnInteraction: false,
       },
       pagination: {
         el: '.swiper-pagination',
-        clickable: true,
-      }
+        clickable: true
+      },
+      effect: "fade",
+      fadeEffect: { crossFade: true },
+      speed: 900
     });
   }
 
@@ -43,7 +44,6 @@ export class HomeComponent implements AfterViewInit {
 
   sendWhatsApp(event: Event) {
     event.preventDefault();
-
     const form = event.target as HTMLFormElement;
 
     const nombre = (form.querySelector('[name="nombre"]') as HTMLInputElement).value;
