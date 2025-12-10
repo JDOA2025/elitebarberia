@@ -1,6 +1,9 @@
 import { Component, AfterViewInit } from '@angular/core';
-import Swiper from 'swiper/bundle';
-import 'swiper/css/bundle';
+import Swiper from 'swiper';
+import { Pagination, Autoplay } from 'swiper/modules';
+
+// Registrar módulos explícitamente (requerido en producción)
+Swiper.use([Pagination, Autoplay]);
 
 @Component({
   selector: 'app-home',
@@ -13,20 +16,23 @@ export class HomeComponent implements AfterViewInit {
   menuOpen = false;
 
   ngAfterViewInit(): void {
-    new Swiper('.hero-swiper', {
-      loop: true,
-      autoplay: {
-        delay: 2600,
-        disableOnInteraction: false,
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true
-      },
-      effect: "fade",
-      fadeEffect: { crossFade: true },
-      speed: 900
-    });
+
+    // FIX para producción: esperar a que Angular pinte el DOM
+    setTimeout(() => {
+      new Swiper('.hero-swiper', {
+        modules: [Pagination, Autoplay],   // Necesario en builds optimizados
+        loop: true,
+        autoplay: {
+          delay: 2800,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true
+        },
+        speed: 900
+      });
+    }, 50); // pequeño delay para que el DOM exista
   }
 
   toggleMenu() {
