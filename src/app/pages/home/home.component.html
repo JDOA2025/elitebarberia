@@ -1,2 +1,198 @@
-<app-navbar></app-navbar>
-<app-hero></app-hero>
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container nav-content">
+    <div class="logo">
+      <span class="circle">EB</span>
+      <span class="brand">Elite Barbería</span>
+    </div>
+
+    <!-- NAV LINKS DESKTOP -->
+    <ul class="nav-links desktop-only">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#galeria">Galería</a></li>
+      <li><a href="#barberos">Barberos</a></li>
+      <li><a href="#reserva">Reservar</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+
+    <a href="#reserva" class="btn-reservar desktop-only" (click)="goToForm($event)">Reservar</a>
+
+    <!-- MENÚ HAMBURGUESA -->
+    <button class="menu-btn mobile-only" (click)="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" [class.open]="menuOpen">
+  <a href="#inicio" (click)="closeMenu()">Inicio</a>
+  <a href="#servicios" (click)="closeMenu()">Servicios</a>
+  <a href="#galeria" (click)="closeMenu()">Galería</a>
+  <a href="#barberos" (click)="closeMenu()">Barberos</a>
+  <a href="#reserva" (click)="closeMenu()">Reservar</a>
+  <a href="#contacto" (click)="closeMenu()">Contacto</a>
+</div>
+
+<!-- HERO — NUEVO CARRUSEL -->
+<section id="inicio" class="hero">
+
+  <div class="hero-swiper swiper">
+    <div class="swiper-wrapper">
+
+      <div class="swiper-slide hero-slide" style="background-image:url('https://images.unsplash.com/photo-1605497788044-5a32c7078486?q=60');"></div>
+
+      <div class="swiper-slide hero-slide" style="background-image:url('https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=60');"></div>
+
+      <div class="swiper-slide hero-slide" style="background-image:url('https://images.unsplash.com/photo-1620331311520-246422fd82f9?q=60');"></div>
+
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+
+  <div class="hero-content">
+    <h1 class="title">Elite Barbería</h1>
+    <p class="subtitle">Estilo premium, precisión y experiencia de alto nivel.</p>
+
+    <div class="hero-buttons">
+      <a href="#reserva" class="btn-primary" (click)="goToForm($event)">Reservar Ahora</a>
+      <a href="#servicios" class="btn-outline">Ver Servicios</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios" class="services">
+  <h2 class="section-title">Nuestros Servicios</h2>
+  <p class="section-subtitle">Servicios premium para el hombre moderno</p>
+
+  <div class="services-grid">
+    <div class="card"><h3>Corte Clásico</h3><p>Estilo clásico profesional</p><span class="price">L. 180</span></div>
+    <div class="card"><h3>Corte + Barba</h3><p>Corte y barba premium</p><span class="price">L. 250</span></div>
+    <div class="card"><h3>Barba Premium</h3><p>Diseño profesional</p><span class="price">L. 150</span></div>
+    <div class="card"><h3>Cejas</h3><p>Perfilado profesional</p><span class="price">L. 80</span></div>
+    <div class="card"><h3>Tinte o Color</h3><p>Coloración profesional</p><span class="price">L. 350</span></div>
+    <div class="card"><h3>Facial Express</h3><p>Tratamiento revitalizante</p><span class="price">L. 200</span></div>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section id="galeria" class="gallery">
+  <h2 class="section-title">Galería</h2>
+  <p class="section-subtitle">Nuestros trabajos</p>
+
+  <div class="gallery-grid">
+    <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?q=60">
+    <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=60">
+    <img src="https://images.unsplash.com/photo-1620331311520-246422fd82f9?q=60">
+  </div>
+</section>
+
+<!-- BARBEROS -->
+<section id="barberos" class="barbers">
+  <h2 class="section-title">Nuestro Equipo</h2>
+  <p class="section-subtitle">Profesionales a tu servicio</p>
+
+  <div class="barbers-grid">
+    <div class="barber-card">
+      <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=60">
+      <h3>Josué – Estilista Senior</h3>
+      <p>Especialista en cortes modernos.</p>
+    </div>
+
+    <div class="barber-card">
+      <img src="https://images.unsplash.com/photo-1559599078-5c07c43e35f8?q=60">
+      <h3>Daniel – Barber Master</h3>
+      <p>Experto en barbería clásica.</p>
+    </div>
+
+    <div class="barber-card">
+      <img src="https://images.unsplash.com/photo-1605490859845-2287cbbabd79?q=60">
+      <h3>Andrés – Colorista</h3>
+      <p>Especialista en tintes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVA -->
+<section id="reserva" class="reserve">
+  <h2 class="section-title">Reservar Cita</h2>
+
+  <form class="reserve-form" (submit)="sendWhatsApp($event)">
+    <input name="nombre" placeholder="Tu nombre" required>
+    <select name="servicio" required>
+      <option value="">Seleccionar servicio</option>
+      <option>Corte Clásico</option>
+      <option>Corte + Barba</option>
+      <option>Barba Premium</option>
+      <option>Cejas</option>
+      <option>Tinte o Color</option>
+      <option>Facial Express</option>
+    </select>
+    <select name="barbero" required>
+      <option value="">Seleccionar barbero</option>
+      <option>Josué</option>
+      <option>Daniel</option>
+      <option>Andrés</option>
+    </select>
+    <input type="date" name="fecha" required>
+    <input type="time" name="hora" required>
+    <textarea name="nota" placeholder="Notas adicionales"></textarea>
+    <button class="btn-primary reserve-btn">Reservar vía WhatsApp</button>
+  </form>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="contact">
+  <div class="contact-grid">
+
+    <div class="contact-info">
+      <h2>Contáctanos</h2>
+
+      <p class="info-title">Teléfono</p>
+      <p class="phone">3142-0427</p>
+
+      <p class="info-title">Horarios</p>
+      <p>Lunes a Viernes: 9 AM – 7 PM</p>
+      <p>Sábados: 9 AM – 6 PM</p>
+      <p>Domingos: Cerrado</p>
+
+      <a class="btn-whatsapp" href="#reserva" (click)="goToForm($event)">WhatsApp</a>
+    </div>
+
+    <div class="map-container">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18..." loading="lazy"></iframe>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="logo"><span class="circle">EB</span><span class="brand">Elite Barbería</span></div>
+      <p>Estilo premium y precisión.</p>
+    </div>
+    <ul class="footer-links">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#galeria">Galería</a></li>
+      <li><a href="#barberos">Barberos</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <div class="socials">
+      <a><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png"></a>
+      <a><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"></a>
+      <a href="#reserva" (click)="goToForm($event)"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"></a>
+    </div>
+  </div>
+
+  <p class="copy">© 2025 Elite Barbería</p>
+</footer>
+
+<!-- BOTÓN WHATSAPP FLOTANTE -->
+<a href="#reserva" class="floating-whatsapp" (click)="goToForm($event)">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+</a>

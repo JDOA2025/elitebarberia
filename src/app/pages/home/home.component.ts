@@ -1,12 +1,68 @@
-import { Component } from '@angular/core';
-import { NavbarComponent } from '../../components/navbar/navbar.component';
-import { HeroComponent } from '../../components/hero/hero.component';
+import { Component, AfterViewInit } from '@angular/core';
+import Swiper from 'swiper';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+
+Swiper.use([Navigation, Pagination, Autoplay]);
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [NavbarComponent, HeroComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {}
+export class HomeComponent implements AfterViewInit {
+
+  menuOpen = false;
+
+  ngAfterViewInit(): void {
+    new Swiper('.hero-swiper', {
+      loop: true,
+      autoplay: {
+        delay: 3500,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      }
+    });
+  }
+
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
+
+  closeMenu() {
+    this.menuOpen = false;
+  }
+
+  goToForm(event: Event) {
+    event.preventDefault();
+    document.querySelector('#reserva')?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  sendWhatsApp(event: Event) {
+    event.preventDefault();
+
+    const form = event.target as HTMLFormElement;
+
+    const nombre = (form.querySelector('[name="nombre"]') as HTMLInputElement).value;
+    const servicio = (form.querySelector('[name="servicio"]') as HTMLSelectElement).value;
+    const barbero = (form.querySelector('[name="barbero"]') as HTMLSelectElement).value;
+    const fecha = (form.querySelector('[name="fecha"]') as HTMLInputElement).value;
+    const hora = (form.querySelector('[name="hora"]') as HTMLInputElement).value;
+    const nota = (form.querySelector('[name="nota"]') as HTMLTextAreaElement).value;
+
+    const msg =
+      `Hola, quiero agendar una cita:\n\n` +
+      `• Nombre: ${nombre}\n` +
+      `• Servicio: ${servicio}\n` +
+      `• Barbero: ${barbero}\n` +
+      `• Fecha: ${fecha}\n` +
+      `• Hora: ${hora}\n` +
+      (nota ? `• Notas: ${nota}\n` : ``);
+
+    const url = `https://wa.me/50431420427?text=${encodeURIComponent(msg)}`;
+    window.open(url, '_blank');
+  }
+}
