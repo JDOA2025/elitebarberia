@@ -10,10 +10,23 @@
 
 img {
   display: block;
-  width: 100%;
+  max-width: 100%;
   height: auto;
-  object-fit: cover; // Evita NG0913 en Angular
+  object-fit: cover;
 }
+
+/* =========================================================
+   VARIABLES
+   ========================================================= */
+$silver-gradient: linear-gradient(
+  90deg,
+  #f5f5f5,
+  #d0d0d0,
+  #9e9e9e
+);
+
+$gold: #ffb300;
+$gold-soft: #ffcc80;
 
 /* =========================================================
    NAVBAR
@@ -44,24 +57,33 @@ img {
 .circle {
   width: 40px;
   height: 40px;
-  background: linear-gradient(135deg, #ffb300, #ff8000);
   border-radius: 50%;
+  background: linear-gradient(135deg, $gold, #ff8000);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
+  overflow: hidden; /* 🔥 CLAVE */
 }
+.logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+
 
 .brand {
   font-size: 20px;
   font-weight: 700;
+  background: $silver-gradient;
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
-.desktop-only {
-  display: flex;
-}
-
-/* NAV LINKS */
+/* =========================================================
+   NAV LINKS
+   ========================================================= */
 .nav-links {
   list-style: none;
   display: flex;
@@ -73,13 +95,13 @@ img {
     transition: 0.2s;
 
     &:hover {
-      color: #ffb300;
+      color: $gold;
     }
   }
 }
 
 .btn-reservar {
-  background: #ffb300;
+  background: $gold;
   padding: 10px 18px;
   border-radius: 30px;
   font-weight: 600;
@@ -88,102 +110,22 @@ img {
 }
 
 /* =========================================================
-   HAMBURGER BUTTON
+   HERO
    ========================================================= */
-.menu-btn {
-  display: none;
-  flex-direction: column;
-  gap: 6px;
-  background: none;
-  border: none;
-  cursor: pointer;
-
-  span {
-    width: 30px;
-    height: 3px;
-    background: #fff;
-    border-radius: 4px;
-  }
-}
-
-.mobile-only {
-  display: none;
-}
-
-/* =========================================================
-   MOBILE MENU
-   ========================================================= */
-.mobile-menu {
-  position: fixed;
-  top: 0;
-  right: -100%;
-  width: 75%;
-  height: 100%;
-  background: #0d0d0d;
-  padding: 120px 40px;
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  transition: 0.35s ease;
-  z-index: 1200;
-  border-left: 1px solid #333;
-
-  &.open {
-    right: 0;
-  }
-
-  a {
-    color: #ffb300;
-    font-size: 20px;
-    font-weight: 600;
-    text-decoration: none;
-  }
-}
-
-
-/* ==========================
-   SWIPER HERO
-========================== */
-
 .hero {
   position: relative;
   height: 100vh;
   overflow: hidden;
 }
 
-.hero-swiper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.hero-slide {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.swiper-pagination-bullet {
-  background: #ffb300 !important;
-  opacity: 0.8;
-}
-
-.swiper-pagination-bullet-active {
-  background: #fff !important;
-}
-
-
-/* Overlay Premium */
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.4),
-    rgba(0, 0, 0, 0.8)
+    rgba(0, 0, 0, 0.35),
+    rgba(0, 0, 0, 0.85)
   );
   z-index: 2;
 }
@@ -198,7 +140,7 @@ img {
   .title {
     font-size: 70px;
     font-weight: 800;
-    background: linear-gradient(90deg, #ffb300, #ff8000);
+    background: $silver-gradient;
     -webkit-background-clip: text;
     color: transparent;
   }
@@ -218,7 +160,7 @@ img {
 }
 
 .btn-primary {
-  background: #ffb300;
+  background: $gold;
   padding: 12px 30px;
   border-radius: 40px;
   color: #000;
@@ -227,11 +169,57 @@ img {
 }
 
 .btn-outline {
-  border: 2px solid #ffb300;
+  border: 2px solid $gold;
   padding: 12px 30px;
   border-radius: 40px;
-  color: #ffb300;
+  color: $gold;
   text-decoration: none;
+}
+  /* =========================================================
+   FIX HERO SWIPER (OBLIGATORIO)
+   ========================================================= */
+
+.hero-swiper {
+  position: absolute;   /*  ESTA LÍNEA ES LA CLAVE */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /*  CLAVE */
+}
+
+
+.hero-swiper .swiper-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-swiper .swiper-slide {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-slide {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* =========================================================
+   SECTION TITLES
+   ========================================================= */
+.section-title {
+  font-size: 42px;
+  font-weight: 700;
+  background: $silver-gradient;
+  -webkit-background-clip: text;
+  color: transparent;
+  text-align: center;
+}
+
+.section-subtitle {
+  color: #bbb;
+  text-align: center;
 }
 
 /* =========================================================
@@ -241,14 +229,6 @@ img {
   padding: 120px 40px;
   text-align: center;
   background: #0a0a0a;
-}
-
-.section-title {
-  font-size: 42px;
-  font-weight: 700;
-  background: linear-gradient(90deg, #ffe082, #ffa726);
-  -webkit-background-clip: text;
-  color: transparent;
 }
 
 .services-grid {
@@ -264,16 +244,15 @@ img {
   border-radius: 12px;
   border: 1px solid #333;
   transition: 0.3s;
+  cursor: pointer;
 
   &:hover {
     transform: translateY(-6px);
-    box-shadow: 0 8px 24px rgba(255, 153, 0, 0.3);
+    box-shadow: 0 8px 24px rgba(255, 179, 0, 0.35);
   }
 
   h3 {
-    background: linear-gradient(90deg, #ffcc80, #ff9100);
-    -webkit-background-clip: text;
-    color: transparent;
+    color: $gold-soft;
     font-weight: 700;
     margin-bottom: 8px;
   }
@@ -282,64 +261,150 @@ img {
     display: inline-block;
     margin-top: 14px;
     background: rgba(255, 193, 7, 0.15);
-    color: #ffb300;
+    color: $gold;
     padding: 6px 12px;
     border-radius: 8px;
-    font-size: 26px;
+    font-size: 22px;
     font-weight: 700;
   }
 }
 
 /* =========================================================
-   GALLERY
+   GALLERY — PREMIUM PRO
    ========================================================= */
 .gallery {
-  padding: 120px 40px;
+  padding: 110px 20px; // más compacto y elegante
   text-align: center;
   background: #0e0e0e;
 }
 
 .gallery-grid {
-  margin-top: 40px;
+  margin-top: 55px;
+
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(3, 1fr); // look editorial
+  gap: 30px;
+
+  max-width: 1100px; // clave para evitar “vacíos”
+  margin-left: auto;
+  margin-right: auto;
+
+  img {
+    width: 100%;
+    height: 360px; // más presencia visual
+    object-fit: cover;
+
+    border-radius: 18px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65);
+    transition: 
+      transform 0.35s ease,
+      box-shadow 0.35s ease,
+      filter 0.35s ease;
+
+    filter: brightness(0.95);
+    cursor: pointer;
+  }
+
+  img:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 18px 48px rgba(255, 179, 0, 0.35);
+    filter: brightness(1.05);
+  }
 }
 
-.gallery-grid img {
-  height: 260px;
-  border-radius: 12px;
-  object-fit: cover;
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .gallery-grid img {
+    height: 320px;
+  }
+}
+
+@media (max-width: 520px) {
+  .gallery {
+    padding: 90px 16px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-grid img {
+    height: 300px;
+  }
 }
 
 /* =========================================================
-   BARBERS
+   BARBERS – DISEÑO COMPACTO PREMIUM
    ========================================================= */
 .barbers {
   padding: 120px 40px;
-  text-align: center;
   background: #0d0d0d;
+  text-align: center;
 }
 
 .barbers-grid {
-  margin-top: 40px;
+  margin-top: 50px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 30px;
+  gap: 26px;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .barber-card {
-  background: #1a1a1a;
-  border-radius: 12px;
-  padding: 25px;
-  border: 1px solid #333;
+  background: linear-gradient(
+    180deg,
+    #1a1a1a,
+    #141414
+  );
+  border-radius: 16px;
+  padding: 26px 22px;
+  border: 1px solid #2a2a2a;
+  transition: all 0.3s ease;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+}
 
-  img {
-    height: 280px;
-    border-radius: 12px;
-    object-fit: cover;
+.barber-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 179, 0, 0.6);
+  box-shadow: 0 10px 28px rgba(255, 179, 0, 0.25);
+}
+
+.barber-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: $gold;
+}
+
+.barber-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #ccc;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .barbers {
+    padding: 90px 24px;
+  }
+
+  .barber-card {
+    padding: 22px 18px;
   }
 }
+
 
 /* =========================================================
    RESERVA
@@ -367,8 +432,234 @@ img {
   }
 }
 
+.selected-services {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  span {
+    background: rgba(255, 179, 0, 0.15);
+    color: $gold;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+  }
+}
+
 /* =========================================================
-   CONTACT
+   SERVICE ACTIONS – BOTONES FORMULARIO
+   ========================================================= */
+.service-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 22px 0 10px;
+  flex-wrap: wrap;
+}
+
+.link-action {
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  padding: 12px 28px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  min-width: 220px;
+  transition: all 0.25s ease;
+}
+
+/* AGREGAR SERVICIOS */
+.link-action:not(.danger) {
+  background: linear-gradient(135deg, #2ecc71, #1e9c52);
+  color: #062b17;
+  box-shadow: 0 6px 20px rgba(46, 204, 113, 0.45);
+}
+
+.link-action:not(.danger):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(46, 204, 113, 0.65);
+}
+
+/* LIMPIAR SERVICIOS */
+.link-action.danger {
+  background: linear-gradient(135deg, #e74c3c, #b3392e);
+  color: #2a0505;
+  box-shadow: 0 6px 20px rgba(231, 76, 60, 0.45);
+}
+
+.link-action.danger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(231, 76, 60, 0.65);
+}
+/* =========================================================
+   POSTS / BLOG CARDS
+   ========================================================= */
+.posts {
+  padding: 90px 40px;
+  background: #0e0e0e;
+}
+
+.posts-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post-card {
+  display: block;
+  background: #141414;
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid #2a2a2a;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(255,179,0,0.35);
+}
+
+.post-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.post-content {
+  padding: 18px;
+}
+
+.post-content h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--gold);
+}
+
+.post-content p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+/* =========================================================
+   REVIEWS / COMENTARIOS
+   ========================================================= */
+.reviews {
+  padding: 120px 40px;
+  background: #0b0b0b;
+  text-align: center;
+}
+
+.rating-summary {
+  margin: 30px 0 60px;
+}
+
+.rating-score {
+  font-size: 52px;
+  font-weight: 800;
+  color: var(--gold);
+}
+
+.rating-stars {
+  font-size: 22px;
+  color: var(--gold);
+}
+
+.rating-count {
+  display: block;
+  margin-top: 8px;
+  color: var(--text-muted);
+}
+
+/* GRID */
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 26px;
+  max-width: 1100px;
+  margin: 0 auto 70px;
+}
+
+.review-card {
+  background: var(--bg-card);
+  padding: 26px;
+  border-radius: 14px;
+  border: 1px solid #2a2a2a;
+  text-align: left;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.review-header strong {
+  color: var(--text-main);
+}
+
+.review-card p {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* FORM */
+.review-form {
+  max-width: 520px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.review-form h3 {
+  margin-bottom: 10px;
+  color: var(--gold);
+}
+
+.review-form input,
+.review-form select,
+.review-form textarea {
+  padding: 14px;
+  border-radius: 10px;
+  background: #1b1b1b;
+  border: 1px solid #333;
+  color: #fff;
+}
+
+.review-form textarea {
+  min-height: 120px;
+  resize: none;
+}
+
+/* =========================================================
+  GRACIAS POR SUS COMENTARIOS 
+   ========================================================= */
+
+   .review-success {
+  margin-top: 16px;
+  padding: 14px;
+  border-radius: 10px;
+  background: rgba(46, 204, 113, 0.15);
+  color: #2ecc71;
+  font-size: 14px;
+  text-align: center;
+}
+
+
+/* =========================================================
+   CONTACT + MAPA
    ========================================================= */
 .contact {
   padding: 120px 40px;
@@ -378,12 +669,16 @@ img {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
+  align-items: center;
 }
 
 .map-container {
+  width: 100%;
+  max-width: 600px;
   height: 350px;
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
+  border: 1px solid #222;
 }
 
 /* =========================================================
@@ -396,91 +691,105 @@ img {
 
 .footer-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 35px;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+  align-items: center;
 }
 
-.socials img {
-  width: 32px;
-  height: 32px;
+.footer-socials img {
+  width: 26px;
+  transition: transform 0.2s;
+}
+
+.footer-socials a:hover img {
+  transform: scale(1.15);
 }
 
 .copy {
-  margin-top: 20px;
+  margin-top: 30px;
   text-align: center;
   color: #777;
 }
 
 /* =========================================================
-   WHATSAPP FLOATING BUTTON
+   WHATSAPP FLOTANTE – SCROLL A FORMULARIO
    ========================================================= */
 .floating-whatsapp {
   position: fixed;
-  bottom: 25px;
-  right: 25px;
-  background: #25d366;
-  width: 65px;
-  height: 65px;
+  bottom: 22px;
+  right: 22px;
+
+  width: 62px;
+  height: 62px;
+
   border-radius: 50%;
+  border: none;
+
+  background: linear-gradient(
+    135deg,
+    #25d366,
+    #1ebe5d
+  );
+
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2000;
 
-  img {
-    width: 38px;
-    height: 38px;
-  }
+  cursor: pointer;
+  z-index: 3000;
+
+  box-shadow: 0 10px 28px rgba(37, 211, 102, 0.45);
+  transition: all 0.25s ease;
 }
+
+.floating-whatsapp img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.floating-whatsapp:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 16px 38px rgba(37, 211, 102, 0.6);
+}
+
+.floating-whatsapp:active {
+  transform: translateY(0);
+  box-shadow: 0 10px 28px rgba(37, 211, 102, 0.45);
+}
+
 
 /* =========================================================
-   RESPONSIVE BREAKPOINTS
+   RESPONSIVE
    ========================================================= */
-
 @media (max-width: 900px) {
-  .desktop-only {
-    display: none !important;
-  }
+  .desktop-only { display: none !important; }
+  .mobile-only { display: flex !important; }
 
-  .mobile-only {
-    display: flex !important;
-  }
-
-  .nav-content {
-    padding: 12px 20px;
-  }
-
-  .title {
-    font-size: 52px;
-  }
-}
-
-@media (max-width: 768px) {
-  .title {
-    font-size: 40px;
-  }
-
-  .subtitle {
-    font-size: 16px;
-  }
-
-  .gallery-grid img {
-    height: 220px;
-  }
-
-  .barber-card img {
-    height: 240px;
-  }
-
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .map-container {
-    height: 260px;
-  }
-
+  .contact-grid,
   .footer-grid {
+    grid-template-columns: 1fr;
     text-align: center;
   }
 }
+
+@media (max-width: 520px) {
+  .service-actions {
+    flex-direction: column;
+  }
+
+  .link-action {
+    width: 100%;
+  }
+
+  .posts {
+    padding: 70px 16px;
+  }
+
+  .post-card img {
+    height: 180px;
+  }
+
+
+}
+

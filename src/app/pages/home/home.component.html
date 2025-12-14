@@ -1,12 +1,18 @@
 <!-- NAVBAR -->
 <nav class="navbar">
   <div class="container nav-content">
-    <div class="logo">
-      <span class="circle">EB</span>
-      <span class="brand">Elite Barbería</span>
-    </div>
 
-    <!-- NAV LINKS DESKTOP -->
+<div class="logo">
+  <span class="circle">
+    <img
+      src="https://firebasestorage.googleapis.com/v0/b/elitebarberia-5849f.firebasestorage.app/o/Logo%2Flogo.png?alt=media&token=XXXXXXXX"
+      alt="Elite Barbería"
+      class="logo-img"
+    />
+  </span>
+  <span class="brand">Elite Barbería</span>
+</div>
+
     <ul class="nav-links desktop-only">
       <li><a href="#inicio">Inicio</a></li>
       <li><a href="#servicios">Servicios</a></li>
@@ -14,16 +20,33 @@
       <li><a href="#barberos">Barberos</a></li>
       <li><a href="#reserva">Reservar</a></li>
       <li><a href="#contacto">Contacto</a></li>
+      <li><a href="#tips">Blog</a></li>
+      <li><a href="#contacto">Ubicación</a></li>
     </ul>
 
-    <a href="#reserva" class="btn-reservar desktop-only" (click)="goToForm($event)">Reservar</a>
+  <!--  <button
+      class="theme-toggle desktop-only"
+      (click)="toggleTheme()"
+      aria-label="Cambiar tema">
+      <span class="sun">☀</span>
+      <span class="moon">☾</span>
+    </button> -->
 
-    <!-- MENÚ HAMBURGUESA -->
+    <a
+      href="#reserva"
+      class="btn-reservar desktop-only"
+      (click)="goToForm($event)">
+      Reservar
+    </a>
+
+    <!-- MENÚ MOBILE -->
     <button class="menu-btn mobile-only" (click)="toggleMenu()">
       <span></span><span></span><span></span>
     </button>
+
   </div>
 </nav>
+
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" [class.open]="menuOpen">
@@ -33,19 +56,34 @@
   <a href="#barberos" (click)="closeMenu()">Barberos</a>
   <a href="#reserva" (click)="closeMenu()">Reservar</a>
   <a href="#contacto" (click)="closeMenu()">Contacto</a>
+  <a href="#tips" (click)="closeMenu()">Blog</a>
+  <a href="#contacto" (click)="closeMenu()">Ubicación</a>
 </div>
 
-<!-- HERO — NUEVO CARRUSEL -->
+<!-- HERO -->
 <section id="inicio" class="hero">
-
   <div class="hero-swiper swiper">
     <div class="swiper-wrapper">
 
-      <div class="swiper-slide hero-slide" style="background-image:url('https://images.unsplash.com/photo-1605497788044-5a32c7078486?q=60');"></div>
+      <div
+        class="swiper-slide hero-slide"
+        style="background-image:url('https://firebasestorage.googleapis.com/v0/b/elitebarberia-5849f.firebasestorage.app/o/carousel%2Fslide1.jpg?alt=media');">
+      </div>
 
-      <div class="swiper-slide hero-slide" style="background-image:url('https://images.unsplash.com/photo-1622286342621-4bd786c2447c?q=60');"></div>
+      <div
+        class="swiper-slide hero-slide"
+        style="background-image:url('https://firebasestorage.googleapis.com/v0/b/elitebarberia-5849f.firebasestorage.app/o/carousel%2Fslide2.jpg?alt=media');">
+      </div>
 
-      <div class="swiper-slide hero-slide" style="background-image:url('https://images.unsplash.com/photo-1620331311520-246422fd82f9?q=60');"></div>
+      <div
+        class="swiper-slide hero-slide"
+        style="background-image:url('https://firebasestorage.googleapis.com/v0/b/elitebarberia-5849f.firebasestorage.app/o/carousel%2Fslide3.jpg?alt=media');">
+      </div>
+
+      <div
+        class="swiper-slide hero-slide"
+        style="background-image:url('https://firebasestorage.googleapis.com/v0/b/elitebarberia-5849f.firebasestorage.app/o/carousel%2Fslide4.jpg?alt=media');">
+      </div>
 
     </div>
 
@@ -55,64 +93,63 @@
   <div class="hero-content">
     <h1 class="title">Elite Barbería</h1>
     <p class="subtitle">Estilo premium, precisión y experiencia de alto nivel.</p>
-
     <div class="hero-buttons">
       <a href="#reserva" class="btn-primary" (click)="goToForm($event)">Reservar Ahora</a>
       <a href="#servicios" class="btn-outline">Ver Servicios</a>
     </div>
   </div>
-
 </section>
+
+
 <!-- SERVICIOS -->
 <section id="servicios" class="services">
   <h2 class="section-title">Nuestros Servicios</h2>
-  <p class="section-subtitle">Servicios premium para el hombre moderno</p>
 
   <div class="services-grid">
-    <div class="card"><h3>Corte Clásico</h3><p>Estilo clásico profesional</p><span class="price">L. 180</span></div>
-    <div class="card"><h3>Corte + Barba</h3><p>Corte y barba premium</p><span class="price">L. 250</span></div>
-    <div class="card"><h3>Barba Premium</h3><p>Diseño profesional</p><span class="price">L. 150</span></div>
-    <div class="card"><h3>Cejas</h3><p>Perfilado profesional</p><span class="price">L. 80</span></div>
-    <div class="card"><h3>Tinte o Color</h3><p>Coloración profesional</p><span class="price">L. 350</span></div>
-    <div class="card"><h3>Facial Express</h3><p>Tratamiento revitalizante</p><span class="price">L. 200</span></div>
+    <div class="card" (click)="addService('Corte Clásico')"><h3>Corte Clásico</h3><span class="price">L. 230</span></div>
+    <div class="card" (click)="addService('Corte + Barba')"><h3>Corte + Barba</h3><span class="price">L. 460</span></div>
+    <div class="card" (click)="addService('Barba')"><h3>Barba</h3><span class="price">L. 230</span></div>
+    <div class="card" (click)="addService('Barba Premium')"><h3>Barba Premium</h3><span class="price">L. 345</span></div>
+    <div class="card" (click)="addService('Pigmentación de Cejas')"><h3>Pigmentación de Cejas</h3><span class="price">L. 230</span></div>
+    <div class="card" (click)="addService('Facial')"><h3>Facial</h3><span class="price">L. 345</span></div>
+    <div class="card" (click)="addService('Perfilado y Pigmentación')"><h3>Perfilado y Pigmentación</h3><span class="price">L. 400</span></div>
   </div>
 </section>
 
-<!-- GALERIA -->
+
+
+
+<!-- GALERÍA -->
 <section id="galeria" class="gallery">
   <h2 class="section-title">Galería</h2>
-  <p class="section-subtitle">Nuestros trabajos</p>
 
-<div class="gallery-grid">
-    <img src="assets/galeria/g1.jpg" alt="Trabajo 1">
-    <img src="assets/galeria/g2.jpg" alt="Trabajo 2">
-    <img src="assets/galeria/g3.jpg" alt="Trabajo 3">
+  <div class="gallery-grid">
+    <img
+      src="https://firebasestorage.googleapis.com/v0/b/elitebarberia-5849f.firebasestorage.app/o/Galeria%2Fgaleria1.jpg?alt=media"
+      alt="Trabajo Elite Barbería 1"
+    >
+
+    <img
+      src="https://firebasestorage.googleapis.com/v0/b/elitebarberia-5849f.firebasestorage.app/o/Galeria%2FGaleria2.jpg?alt=media"
+      alt="Trabajo Elite Barbería 2"
+    >
+
+    <img
+      src="https://firebasestorage.googleapis.com/v0/b/elitebarberia-5849f.firebasestorage.app/o/Galeria%2FGaleria3.jpg?alt=media"
+      alt="Trabajo Elite Barbería 3"
+    >
   </div>
 </section>
+
 
 <!-- BARBEROS -->
 <section id="barberos" class="barbers">
   <h2 class="section-title">Nuestro Equipo</h2>
-  <p class="section-subtitle">Profesionales a tu servicio</p>
-
   <div class="barbers-grid">
-    <div class="barber-card">
-      <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=60">
-      <h3>Josué – Estilista Senior</h3>
-      <p>Especialista en cortes modernos.</p>
-    </div>
-
-    <div class="barber-card">
-      <img src="https://images.unsplash.com/photo-1559599078-5c07c43e35f8?q=60">
-      <h3>Daniel – Barber Master</h3>
-      <p>Experto en barbería clásica.</p>
-    </div>
-
-    <div class="barber-card">
-      <img src="https://images.unsplash.com/photo-1605490859845-2287cbbabd79?q=60">
-      <h3>Andrés – Colorista</h3>
-      <p>Especialista en tintes.</p>
-    </div>
+    <div class="barber-card"><h3>Fernando Castellano</h3><p>Precisión técnica y detalle profesional.</p></div>
+    <div class="barber-card"><h3>Kevin Gallo</h3><p>Dominio de estilos modernos y clásicos.</p></div>
+    <div class="barber-card"><h3>Yahir Zepeda</h3><p>Estilos personalizados con acabado limpio.</p></div>
+    <div class="barber-card"><h3>Stanly Villatoro</h3><p>Simetría, técnica y consistencia.</p></div>
   </div>
 </section>
 
@@ -122,83 +159,263 @@
 
   <form class="reserve-form" (submit)="sendWhatsApp($event)">
     <input name="nombre" placeholder="Tu nombre" required>
-    <select name="servicio" required>
-      <option value="">Seleccionar servicio</option>
-      <option>Corte Clásico</option>
-      <option>Corte + Barba</option>
-      <option>Barba Premium</option>
-      <option>Cejas</option>
-      <option>Tinte o Color</option>
-      <option>Facial Express</option>
-    </select>
+
+    <div class="selected-services">
+      <span *ngFor="let s of selectedServices">{{ s }}</span>
+    </div>
+
+    <div class="service-actions">
+      <button type="button" class="link-action" (click)="scrollToServices()">+ Agregar servicios</button>
+      <button type="button" class="link-action danger" *ngIf="selectedServices.length" (click)="clearServices()">Limpiar servicios</button>
+    </div>
+
+    <div class="total-box" *ngIf="selectedServices.length">
+      <span>Total a pagar</span>
+      <strong>L. {{ totalAmount }}</strong>
+    </div>
+
     <select name="barbero" required>
       <option value="">Seleccionar barbero</option>
-      <option>Josué</option>
-      <option>Daniel</option>
-      <option>Andrés</option>
+      <option>Fernando Castellano</option>
+      <option>Kevin Gallo</option>
+      <option>Yahir Zepeda</option>
+      <option>Stanly Villatoro</option>
     </select>
-    <input type="date" name="fecha" required>
-    <input type="time" name="hora" required>
-    <textarea name="nota" placeholder="Notas adicionales"></textarea>
+
+    <input type="date" name="fecha" [min]="today" (change)="onDateChange($event.target.value)" required>
+
+    <select name="hora" required>
+      <option value="">Seleccionar hora</option>
+      <option *ngFor="let h of availableHours">{{ h }}</option>
+    </select>
+
     <button class="btn-primary reserve-btn">Reservar vía WhatsApp</button>
   </form>
+</section>
+
+<!-- BLOG / TIPS DESTACADOS -->
+<section id="tips" class="posts">
+  <h2 class="section-title">Blog</h2>
+
+  <div class="posts-grid">
+
+    <!-- POST 1 -->
+    <a
+      href="https://heyjoe.es/como-hidratar-el-pelo"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="post-card"
+    >
+      <img
+        src="https://heyjoe.es/wp-content/uploads/como-hidratar-el-pelo.jpg"
+        alt="Por qué se deshidrata el pelo"
+      >
+      <div class="post-content">
+        <h3>¿Por qué se deshidrata el pelo?</h3>
+        <p>
+          Entender por qué el cabello pierde hidratación es clave para
+          recuperar fuerza, brillo y salud.
+        </p>
+      </div>
+    </a>
+
+    <!-- POST 2 -->
+    <a
+      href="https://heyjoe.es/mejores-peinados-de-fiesta-para-pelo-corto-en-hombres"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="post-card"
+    >
+      <img
+        src="https://heyjoe.es/wp-content/uploads/Cuales-son-los-mejores-peinados-de-fiesta-para-pelo-corto-en-hombres.jpg"
+        alt="Peinados de fiesta para pelo corto"
+      >
+      <div class="post-content">
+        <h3>Peinados de fiesta para pelo corto</h3>
+        <p>
+          Cuando tienes pocos centímetros, cada decisión cuenta:
+          producto, dirección y estilo correcto.
+        </p>
+      </div>
+    </a>
+
+    <!-- POST 3 -->
+    <a
+      href="https://heyjoe.es/como-limpiar-la-barba"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="post-card"
+    >
+      <img
+        src="https://heyjoe.es/wp-content/uploads/Como-limpiar-la-barba-consejos-de-como-lavar-tu-barba.jpg"
+        alt="Cómo limpiar la barba correctamente"
+      >
+      <div class="post-content">
+        <h3>Cómo limpiar la barba correctamente</h3>
+        <p>
+          Lavar la barba como un profesional es esencial para que la piel
+          respire y el vello crezca fuerte.
+        </p>
+      </div>
+    </a>
+
+  </div>
 </section>
 
 <!-- CONTACTO -->
 <section id="contacto" class="contact">
   <div class="contact-grid">
-
     <div class="contact-info">
       <h2>Contáctanos</h2>
-
-      <p class="info-title">Teléfono</p>
-      <p class="phone">3142-0427</p>
-
-      <p class="info-title">Horarios</p>
-      <p>Lunes a Viernes: 9 AM – 7 PM</p>
-      <p>Sábados: 9 AM – 6 PM</p>
-      <p>Domingos: Cerrado</p>
-
-      <a class="btn-whatsapp" href="#reserva" (click)="goToForm($event)">WhatsApp</a>
+      <p class="phone">+504 3142-0427</p>
+         <p class="info-title">Horarios de atención</p>
+      <p>Lunes a Viernes: 10:00 AM – 7:00 PM</p>
+      <p>Sábados: 10:00 AM – 7:00 PM</p>
+      <p>Domingos: 10:00 AM – 5:00 PM</p>
     </div>
 
     <div class="map-container">
-<iframe 
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d395.18479856364934!2d-87.19102238678524!3d14.087876347697437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f6fa35c449df965%3A0xbd29939487eb1013!2sPlaza%20Paseo%20Juan%20Pablo!5e0!3m2!1ses!2shn!4v1734046638746!5m2!1ses!2shn"
-  width="100%" height="100%" style="border:0;" loading="lazy" 
-  referrerpolicy="no-referrer-when-downgrade">
-</iframe>
+      <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d967.4548178129972!2d-87.19187334179877!3d14.087843645306311!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f6fa34928199e4b%3A0xb661b44c6259ada7!2sElite%20Barber%C3%ADa!5e0!3m2!1ses!2shn!4v1765595249787!5m2!1ses!2shn"
+    width="100%"
+    height="100%"
+    style="border:0;"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+    </div>
+  </div>
 
+  <!-- DIRECCIÓN ESCRITA -->
+<div class="map-address">
+  <h4>📍 Nuestra ubicación</h4>
+  <p>
+    Elite Barbería<br>
+    Boulevard Centroamérica,<br>
+    Frente a Pollo Supremo – Paseo Juan Pablo II<br>
+    Tegucigalpa, Francisco Morazán, Honduras
+  </p>
+</div>
+</section>
+
+<!-- EVALUACIONES Y COMENTARIOS -->
+<section id="reviews" class="reviews">
+  <h2 class="section-title">Opiniones de nuestros clientes</h2>
+  <p class="section-subtitle">
+    La experiencia Elite contada por quienes ya confiaron en nosotros
+  </p>
+
+  <!-- RESUMEN -->
+  <div class="rating-summary">
+    <div class="rating-score">4.9</div>
+    <div class="rating-stars">★★★★★</div>
+    <span class="rating-count">Basado en 128 opiniones</span>
+  </div>
+
+  <!-- LISTA DE COMENTARIOS -->
+  <div class="reviews-grid">
+
+    <div class="review-card">
+      <div class="review-header">
+        <strong>Carlos M.</strong>
+        <span class="stars">★★★★★</span>
+      </div>
+      <p>
+        Excelente atención, el corte quedó perfecto y el ambiente es premium.
+      </p>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header">
+        <strong>Andrés R.</strong>
+        <span class="stars">★★★★☆</span>
+      </div>
+      <p>
+        Muy profesionales, volveré sin duda. Recomendado.
+      </p>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header">
+        <strong>José L.</strong>
+        <span class="stars">★★★★★</span>
+      </div>
+      <p>
+        De las mejores barberías de Tegucigalpa. Nivel alto.
+      </p>
     </div>
 
   </div>
-</section>
+
+  <!-- FORMULARIO -->
+<form class="review-form" (submit)="submitReview($event)">
+  <h3>Deja tu opinión</h3>
+
+  <input name="nombre" type="text" placeholder="Tu nombre" required>
+
+  <select name="rating" required>
+    <option value="">Calificación</option>
+    <option value="5">★★★★★</option>
+    <option value="4">★★★★☆</option>
+    <option value="3">★★★☆☆</option>
+    <option value="2">★★☆☆☆</option>
+    <option value="1">★☆☆☆☆</option>
+  </select>
+
+  <textarea name="comentario" placeholder="Escribe tu comentario" required></textarea>
+
+  <button class="btn-primary">Enviar comentario</button>
+
+  <!-- MENSAJE DE AGRADECIMIENTO -->
+  <p class="review-success" *ngIf="reviewSent">
+    ✅ Gracias por tu valoración.  
+    Tomaremos en cuenta tus comentario para seguir mejorando.
+  </p>
+</form>
 
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-grid">
-    <div>
-      <div class="logo"><span class="circle">EB</span><span class="brand">Elite Barbería</span></div>
-      <p>Estilo premium y precisión.</p>
+
+    <!-- BRAND -->
+    <div class="footer-brand">
+      <div class="logo">
+        <span class="circle">
+          <img
+            src="https://firebasestorage.googleapis.com/v0/b/elitebarberia-5849f.firebasestorage.app/o/Logo%2Flogo.png?alt=media&token=XXXXXXXX"
+            alt="Elite Barbería"
+            class="logo-img"
+          />
+        </span>
+        <span class="brand">Elite Barbería</span>
+      </div>
     </div>
-    <ul class="footer-links">
-      <li><a href="#inicio">Inicio</a></li>
-      <li><a href="#servicios">Servicios</a></li>
-      <li><a href="#galeria">Galería</a></li>
-      <li><a href="#barberos">Barberos</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-    </ul>
-    <div class="socials">
-      <a><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png"></a>
-      <a><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"></a>
-      <a href="#reserva" (click)="goToForm($event)"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"></a>
+
+    <!-- SOCIALS -->
+    <div class="footer-socials">
+      <a href="https://www.facebook.com" target="_blank" rel="noopener">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
+      </a>
+
+      <a
+        href="https://www.instagram.com/barberelite.89/?igsh=MTVmdm9jN2E2dWNsOQ%3D%3D&utm_source=qr#"
+        target="_blank"
+        rel="noopener"
+      >
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+      </a>
     </div>
+
   </div>
 
-  <p class="copy">© 2025 Elite Barbería</p>
+  <p class="copy">
+    © 2025 Elite Barbería — Todos los derechos reservados
+  </p>
 </footer>
 
-<!-- BOTÓN WHATSAPP FLOTANTE -->
-<a href="#reserva" class="floating-whatsapp" (click)="goToForm($event)">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
-</a>
+
+<!-- WHATSAPP FLOAT -->
+<button class="floating-whatsapp" (click)="goToForm($event)">
+  <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
+</button>
