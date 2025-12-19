@@ -2,13 +2,15 @@ import { Component, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import Swiper from 'swiper';
 import { Pagination, Autoplay } from 'swiper/modules';
+import { ElitePopupComponent } from '../../components/elite-popup/elite-popup.component';
+
 
 Swiper.use([Pagination, Autoplay]);
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,ElitePopupComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

@@ -31,6 +31,23 @@ $gold-soft: #ffcc80;
 /* =========================================================
    NAVBAR
    ========================================================= */
+   /* =========================================================
+   FIX LOGO LINK (QUITAR LINEA MORADA)
+   ========================================================= */
+.logo {
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo:visited,
+.logo:hover,
+.logo:active,
+.logo:focus {
+  text-decoration: none;
+  color: inherit;
+  outline: none;
+}
+
 .navbar {
   position: fixed;
   width: 100%;
@@ -79,6 +96,60 @@ $gold-soft: #ffcc80;
   background: $silver-gradient;
   -webkit-background-clip: text;
   color: transparent;
+}
+/* =========================================================
+   MOBILE NAV BUTTON
+   ========================================================= */
+.menu-btn {
+  width: 32px;
+  height: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 2001;
+}
+
+.menu-btn span {
+  width: 100%;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+/* =========================================================
+   MOBILE MENU
+   ========================================================= */
+.mobile-menu {
+  position: fixed;
+  top: 70px; /* debajo del navbar */
+  left: 0;
+  width: 100%;
+  background: #0e0e0e;
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  padding: 24px;
+
+  transform: translateY(-120%);
+  transition: transform 0.35s ease;
+
+  z-index: 2000;
+}
+
+.mobile-menu a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.mobile-menu.open {
+  transform: translateY(0);
 }
 
 /* =========================================================
@@ -175,6 +246,41 @@ $gold-soft: #ffcc80;
   color: $gold;
   text-decoration: none;
 }
+
+/* =========================================================
+   FIX HERO SWIPER – PRODUCCIÓN
+   ========================================================= */
+
+.hero {
+  min-height: 100vh; /* 👈 refuerzo */
+}
+
+.hero-swiper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-swiper .swiper-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-swiper .swiper-slide {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-slide {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
   /* =========================================================
    FIX HERO SWIPER (OBLIGATORIO)
    ========================================================= */
@@ -551,6 +657,124 @@ $gold-soft: #ffcc80;
   line-height: 1.6;
   color: var(--text-muted);
 }
+
+
+/* =========================================================
+   ABOUT – TARJETA PREMIUM
+   ========================================================= */
+.about {
+  padding: 140px 20px;
+  background: radial-gradient(circle at top, #111 0%, #000 70%);
+  display: flex;
+  justify-content: center;
+}
+
+.about-card {
+  max-width: 980px;
+  width: 100%;
+  background: linear-gradient(180deg, #121212, #0a0a0a);
+  border-radius: 22px;
+  padding: 70px 80px;
+  text-align: center;
+  border: 1px solid #222;
+  box-shadow: 0 40px 120px rgba(0,0,0,0.85);
+}
+
+/* TEXTO */
+.about-intro {
+  font-size: 18px;
+  color: #ddd;
+  margin: 24px auto 10px;
+  max-width: 720px;
+}
+
+.about-text {
+  font-size: 15px;
+  color: #bbb;
+  max-width: 760px;
+  margin: 14px auto;
+  line-height: 1.7;
+}
+
+.about-text.highlight {
+  color: #eee;
+  font-weight: 600;
+  margin-top: 24px;
+}
+
+/* DIVISOR */
+.about-divider {
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, $gold, transparent);
+  margin: 34px auto;
+}
+
+/* CHECKLIST */
+.about-checklist {
+  margin: 50px auto;
+  padding: 0;
+  list-style: none;
+  max-width: 760px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 40px;
+  text-align: left;
+}
+
+.about-checklist li {
+  position: relative;
+  padding-left: 34px;
+  font-size: 15px;
+  color: #ddd;
+}
+
+.about-checklist li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 1px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(255,179,0,0.15);
+  color: $gold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+}
+
+/* VALORES */
+.about-values {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.about-values span {
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  color: $gold;
+  border: 1px solid rgba(255,179,0,0.35);
+  background: rgba(255,179,0,0.08);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .about-card {
+    padding: 50px 26px;
+  }
+
+  .about-checklist {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* =========================================================
    REVIEWS / COMENTARIOS
    ========================================================= */
@@ -695,6 +919,12 @@ $gold-soft: #ffcc80;
   gap: 40px;
   align-items: center;
 }
+.footer-socials {
+  display: flex;              /* 👈 CLAVE */
+  justify-content: center;
+  align-items: center;
+  gap: 18px;                  /* espacio entre iconos */
+}
 
 .footer-socials img {
   width: 26px;
@@ -789,6 +1019,8 @@ $gold-soft: #ffcc80;
   .post-card img {
     height: 180px;
   }
+
+ 
 
 
 }

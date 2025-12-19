@@ -1,8 +1,9 @@
+<elite-popup></elite-popup>
 <!-- NAVBAR -->
 <nav class="navbar">
   <div class="container nav-content">
 
-<div class="logo">
+<a href="#inicio" class="logo" (click)="closeMenu()">
   <span class="circle">
     <img
       src="https://firebasestorage.googleapis.com/v0/b/elitebarberia-5849f.firebasestorage.app/o/Logo%2Flogo.png?alt=media&token=XXXXXXXX"
@@ -11,10 +12,12 @@
     />
   </span>
   <span class="brand">Elite Barbería</span>
-</div>
+</a>
+
 
     <ul class="nav-links desktop-only">
       <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#about">Acerca de</a></li>
       <li><a href="#servicios">Servicios</a></li>
       <li><a href="#galeria">Galería</a></li>
       <li><a href="#barberos">Barberos</a></li>
@@ -22,6 +25,9 @@
       <li><a href="#contacto">Contacto</a></li>
       <li><a href="#tips">Blog</a></li>
       <li><a href="#contacto">Ubicación</a></li>
+      <li><a href="#reviews">Opiniones</a></li>
+
+
     </ul>
 
   <!--  <button
@@ -51,6 +57,7 @@
 <!-- MOBILE MENU -->
 <div class="mobile-menu" [class.open]="menuOpen">
   <a href="#inicio" (click)="closeMenu()">Inicio</a>
+  <a href="#about" (click)="closeMenu()">Acerca de</a>
   <a href="#servicios" (click)="closeMenu()">Servicios</a>
   <a href="#galeria" (click)="closeMenu()">Galería</a>
   <a href="#barberos" (click)="closeMenu()">Barberos</a>
@@ -58,6 +65,10 @@
   <a href="#contacto" (click)="closeMenu()">Contacto</a>
   <a href="#tips" (click)="closeMenu()">Blog</a>
   <a href="#contacto" (click)="closeMenu()">Ubicación</a>
+  <a href="#reviews" (click)="closeMenu()">Opiniones</a>
+
+
+
 </div>
 
 <!-- HERO -->
@@ -101,6 +112,49 @@
 </section>
 
 
+
+<section id="about" class="about">
+  <div class="about-card">
+
+    <h2 class="section-title">Elite Barbería</h2>
+
+    <p class="about-intro">
+      Más que una barbería, una experiencia construida sobre técnica,
+      disciplina y respeto por la identidad de cada cliente.
+    </p>
+
+    <div class="about-divider"></div>
+
+    <p class="about-text">
+      Elite Barbería nació con una idea clara: elevar la barbería a un estándar
+      superior. No como un servicio rápido, sino como un ritual donde el
+      detalle, la precisión y la responsabilidad profesional son prioridad.
+    </p>
+
+    <p class="about-text highlight">
+      Cada corte es una firma. Cada cliente, una responsabilidad.
+    </p>
+
+    <ul class="about-checklist">
+      <li>Atención personalizada desde el primer minuto</li>
+      <li>Técnicas profesionales adaptadas a tu estilo</li>
+      <li>Higiene, orden y protocolo en cada servicio</li>
+      <li>Barberos especializados en cortes modernos y clásicos</li>
+      <li>Experiencia cómoda, puntual y sin improvisaciones</li>
+      <li>Resultados consistentes, precisos y de alto nivel</li>
+    </ul>
+
+    <div class="about-values">
+      <span>Precisión</span>
+      <span>Respeto</span>
+      <span>Identidad</span>
+    </div>
+
+  </div>
+</section>
+
+
+
 <!-- SERVICIOS -->
 <section id="servicios" class="services">
   <h2 class="section-title">Nuestros Servicios</h2>
@@ -110,7 +164,7 @@
     <div class="card" (click)="addService('Corte + Barba')"><h3>Corte + Barba</h3><span class="price">L. 460</span></div>
     <div class="card" (click)="addService('Barba')"><h3>Barba</h3><span class="price">L. 230</span></div>
     <div class="card" (click)="addService('Barba Premium')"><h3>Barba Premium</h3><span class="price">L. 345</span></div>
-    <div class="card" (click)="addService('Pigmentación de Cejas')"><h3>Pigmentación de Cejas</h3><span class="price">L. 230</span></div>
+    <div class="card" (click)="addService('Pigmentación de Cejas')"><h3>Pigmentación de Cejas (Dama)</h3><span class="price">L. 230</span></div>
     <div class="card" (click)="addService('Facial')"><h3>Facial</h3><span class="price">L. 345</span></div>
     <div class="card" (click)="addService('Perfilado y Pigmentación')"><h3>Perfilado y Pigmentación</h3><span class="price">L. 400</span></div>
   </div>
@@ -188,6 +242,11 @@
       <option value="">Seleccionar hora</option>
       <option *ngFor="let h of availableHours">{{ h }}</option>
     </select>
+    <textarea
+  name="nota"
+  placeholder="Notas adicionales (opcional)">
+</textarea>
+
 
     <button class="btn-primary reserve-btn">Reservar vía WhatsApp</button>
   </form>
@@ -417,5 +476,8 @@
 
 <!-- WHATSAPP FLOAT -->
 <button class="floating-whatsapp" (click)="goToForm($event)">
-  <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
+  <img
+    src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+    alt="WhatsApp Reservas">
 </button>
+
